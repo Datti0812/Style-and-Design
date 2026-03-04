@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLE — Fashion Intelligence Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ═══════════════════════════════════════
+       HEADER
+  ════════════════════════════════════════ -->
+  <header class="header">
+    <div class="header-inner">
+      <div class="logo">
+        <span class="logo-mark">S</span>
+        <span class="logo-text">STYLE<em>intel</em></span>
+      </div>
+      <nav class="header-nav">
+        <a href="#" class="nav-link active">Library</a>
+        <a href="#" class="nav-link">Mood Boards</a>
+        <a href="#" class="nav-link">AI Studio</a>
+        <a href="#" class="nav-link">Exports</a>
+      </nav>
+      <div class="header-actions">
+        <button class="btn-upload" id="openUploadBtn">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          Upload
+        </button>
+        <div class="avatar">KD</div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ═══════════════════════════════════════
+       MAIN LAYOUT
+  ════════════════════════════════════════ -->
+  <main class="main-layout">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar" id="sidebar">
+      <div class="sidebar-section">
+        <div class="sidebar-header">
+          <span>Filters</span>
+          <button class="clear-filters" id="clearFilters">Clear all</button>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="garment-type">
+            Garment Type
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="garment-type">
+            <label class="filter-chip"><input type="checkbox" value="Outerwear" /><span>Outerwear</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Dress" /><span>Dress</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Trousers" /><span>Trousers</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Top" /><span>Top</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Skirt" /><span>Skirt</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Suit" /><span>Suit</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Knitwear" /><span>Knitwear</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="style">
+            Style
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="style">
+            <label class="filter-chip"><input type="checkbox" value="Minimalist" /><span>Minimalist</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Avant-garde" /><span>Avant-garde</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Streetwear" /><span>Streetwear</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Classic" /><span>Classic</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Bohemian" /><span>Bohemian</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Romantic" /><span>Romantic</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="season">
+            Season
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="season">
+            <label class="filter-chip"><input type="checkbox" value="SS26" /><span>SS26</span></label>
+            <label class="filter-chip"><input type="checkbox" value="AW25" /><span>AW25</span></label>
+            <label class="filter-chip"><input type="checkbox" value="SS25" /><span>SS25</span></label>
+            <label class="filter-chip"><input type="checkbox" value="AW24" /><span>AW24</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="color">
+            Color Palette
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="color">
+            <div class="color-swatches">
+              <button class="swatch" style="background:#1a1a1a" title="Black" data-color="Black"></button>
+              <button class="swatch" style="background:#f5f0eb" title="Cream" data-color="Cream"></button>
+              <button class="swatch" style="background:#8b6f47" title="Camel" data-color="Camel"></button>
+              <button class="swatch" style="background:#c0392b" title="Red" data-color="Red"></button>
+              <button class="swatch" style="background:#2c3e50" title="Navy" data-color="Navy"></button>
+              <button class="swatch" style="background:#6c5ce7" title="Violet" data-color="Violet"></button>
+              <button class="swatch" style="background:#27ae60" title="Green" data-color="Green"></button>
+              <button class="swatch" style="background:#e67e22" title="Terracotta" data-color="Terracotta"></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="occasion">
+            Occasion
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="occasion">
+            <label class="filter-chip"><input type="checkbox" value="Evening" /><span>Evening</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Daywear" /><span>Daywear</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Workwear" /><span>Workwear</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Resort" /><span>Resort</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Sportswear" /><span>Sportswear</span></label>
+          </div>
+        </div>
+
+        <div class="filter-group">
+          <div class="filter-label" data-toggle="market">
+            Market / Location
+            <svg class="chevron" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+          </div>
+          <div class="filter-options open" id="market">
+            <label class="filter-chip"><input type="checkbox" value="Paris" /><span>Paris</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Milan" /><span>Milan</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Tokyo" /><span>Tokyo</span></label>
+            <label class="filter-chip"><input type="checkbox" value="New York" /><span>New York</span></label>
+            <label class="filter-chip"><input type="checkbox" value="Seoul" /><span>Seoul</span></label>
+            <label class="filter-chip"><input type="checkbox" value="London" /><span>London</span></label>
+          </div>
+        </div>
+      </div>
+    </aside>
+
+    <!-- CONTENT AREA -->
+    <div class="content-area">
+
+      <!-- TOOLBAR -->
+      <div class="toolbar">
+        <div class="search-wrap">
+          <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input class="search-input" type="text" id="searchInput" placeholder="Search by description, style, material…" />
+          <button class="ai-search-btn" title="AI semantic search">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+            AI
+          </button>
+        </div>
+        <div class="toolbar-right">
+          <div class="result-count" id="resultCount">128 garments</div>
+          <div class="view-toggle">
+            <button class="view-btn active" id="masonryView" title="Masonry">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="9" rx="1"/><rect x="14" y="3" width="7" height="6" rx="1"/><rect x="14" y="13" width="7" height="8" rx="1"/><rect x="3" y="16" width="7" height="5" rx="1"/></svg>
+            </button>
+            <button class="view-btn" id="gridView" title="Grid">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/></svg>
+            </button>
+          </div>
+          <button class="sidebar-toggle" id="sidebarToggle" title="Toggle filters">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="15" y2="12"/><line x1="3" y1="18" x2="9" y2="18"/></svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- ACTIVE FILTER CHIPS -->
+      <div class="active-filters" id="activeFilters"></div>
+
+      <!-- MASONRY GRID -->
+      <div class="masonry-grid" id="masonryGrid">
+
+        <!-- Card 1 -->
+        <div class="card" data-garment="Outerwear" data-style="Minimalist" data-season="AW25" data-color="Camel" data-occasion="Daywear" data-market="Paris"
+             data-description="A structured double-breasted camel coat in heavyweight wool, featuring wide lapels and a belted silhouette. Shot in the Marais district of Paris during AW25 market week.">
+          <div class="card-img-wrap" style="height:320px">
+            <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e3?w=600&q=80" alt="Camel Coat" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Outerwear</span>
+                <span class="qtag">Minimalist</span>
+                <span class="qtag">AW25</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn" title="View details" data-detail="0">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Paris · AW25</span>
+              <span class="card-dot" style="background:#8b6f47"></span>
+            </div>
+            <h3 class="card-title">Double-Breasted Wool Coat</h3>
+            <p class="card-desc">Structured camel wool with wide lapels, belted silhouette and statement buttons.</p>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="card" data-garment="Dress" data-style="Romantic" data-season="SS26" data-color="Cream" data-occasion="Evening" data-market="Milan"
+             data-description="Ethereal bias-cut slip dress in ivory silk charmeuse with delicate lace trim at the hem and neckline. Captured at Milan showroom, SS26 season. Consumer profile: elegant, feminine.">
+          <div class="card-img-wrap" style="height:420px">
+            <img src="https://images.unsplash.com/photo-1566479179817-2f53a0f7fbaa?w=600&q=80" alt="Silk Dress" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Dress</span>
+                <span class="qtag">Romantic</span>
+                <span class="qtag">SS26</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Milan · SS26</span>
+              <span class="card-dot" style="background:#f5f0eb;border:1px solid #ccc"></span>
+            </div>
+            <h3 class="card-title">Bias-Cut Silk Slip Dress</h3>
+            <p class="card-desc">Ivory silk charmeuse with delicate lace trim. Evening elegance.</p>
+          </div>
+        </div>
+
+        <!-- Card 3 -->
+        <div class="card" data-garment="Streetwear" data-style="Streetwear" data-season="SS26" data-color="Black" data-occasion="Daywear" data-market="Tokyo"
+             data-description="Oversized technical nylon cargo jacket in matte black with multiple utilitarian pockets, concealed zip closures and adjustable hem cord. Tokyo streetwear district, March 2026.">
+          <div class="card-img-wrap" style="height:280px">
+            <img src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?w=600&q=80" alt="Cargo Jacket" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Outerwear</span>
+                <span class="qtag">Streetwear</span>
+                <span class="qtag">SS26</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Tokyo · SS26</span>
+              <span class="card-dot" style="background:#1a1a1a"></span>
+            </div>
+            <h3 class="card-title">Technical Nylon Cargo Jacket</h3>
+            <p class="card-desc">Matte black with utilitarian pockets and adjustable hem detailing.</p>
+          </div>
+        </div>
+
+        <!-- Card 4 -->
+        <div class="card" data-garment="Suit" data-style="Classic" data-season="AW25" data-color="Navy" data-occasion="Workwear" data-market="London"
+             data-description="Sharply tailored single-breasted suit in deep navy with a subtle herringbone weave. Two-button closure, structured shoulder, and straight-leg trousers. Spotted in the City of London financial district.">
+          <div class="card-img-wrap" style="height:380px">
+            <img src="https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=600&q=80" alt="Navy Suit" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Suit</span>
+                <span class="qtag">Classic</span>
+                <span class="qtag">AW25</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">London · AW25</span>
+              <span class="card-dot" style="background:#2c3e50"></span>
+            </div>
+            <h3 class="card-title">Herringbone Tailored Suit</h3>
+            <p class="card-desc">Deep navy with structured shoulder and straight-leg trouser.</p>
+          </div>
+        </div>
+
+        <!-- Card 5 -->
+        <div class="card" data-garment="Knitwear" data-style="Avant-garde" data-season="AW25" data-color="Terracotta" data-occasion="Daywear" data-market="Seoul"
+             data-description="Sculptural knit top in burnt terracotta with exaggerated 3D ribbing and an asymmetric draped neckline. Hand-knitted feel, chunky gauge. Discovered in Seoul's Seongsu-dong creative district. Trend note: volume at the torso.">
+          <div class="card-img-wrap" style="height:350px">
+            <img src="https://images.unsplash.com/photo-1617922001439-4a2e6562f328?w=600&q=80" alt="Knit Top" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Knitwear</span>
+                <span class="qtag">Avant-garde</span>
+                <span class="qtag">AW25</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Seoul · AW25</span>
+              <span class="card-dot" style="background:#e67e22"></span>
+            </div>
+            <h3 class="card-title">Sculptural Chunky Knit Top</h3>
+            <p class="card-desc">Burnt terracotta with 3D ribbing and asymmetric draped neckline.</p>
+          </div>
+        </div>
+
+        <!-- Card 6 -->
+        <div class="card" data-garment="Skirt" data-style="Bohemian" data-season="SS26" data-color="Green" data-occasion="Resort" data-market="Paris"
+             data-description="Floor-length tiered skirt in lightweight cotton voile with an all-over botanical print in deep greens and ivory. Elastic waist, fluid movement. Photographed at a Paris concept store during SS26 preview week.">
+          <div class="card-img-wrap" style="height:460px">
+            <img src="https://images.unsplash.com/photo-1594938298603-c8148c4b4645?w=600&q=80" alt="Tiered Skirt" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Skirt</span>
+                <span class="qtag">Bohemian</span>
+                <span class="qtag">SS26</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Paris · SS26</span>
+              <span class="card-dot" style="background:#27ae60"></span>
+            </div>
+            <h3 class="card-title">Botanical Print Tiered Skirt</h3>
+            <p class="card-desc">Cotton voile with deep greens and ivory botanical print, fluid movement.</p>
+          </div>
+        </div>
+
+        <!-- Card 7 -->
+        <div class="card" data-garment="Top" data-style="Minimalist" data-season="SS26" data-color="Black" data-occasion="Workwear" data-market="New York"
+             data-description="Sleek tank top in structured matte jersey with a square neckline and slight boning at the bodice for shape retention. Clean, unadorned silhouette. New York showroom, minimal luxury segment.">
+          <div class="card-img-wrap" style="height:300px">
+            <img src="https://images.unsplash.com/photo-1604917621956-10dfa7cce2e7?w=600&q=80" alt="Black Top" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Top</span>
+                <span class="qtag">Minimalist</span>
+                <span class="qtag">SS26</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">New York · SS26</span>
+              <span class="card-dot" style="background:#1a1a1a"></span>
+            </div>
+            <h3 class="card-title">Structured Matte Jersey Tank</h3>
+            <p class="card-desc">Square neckline with subtle boning. Minimal luxury.</p>
+          </div>
+        </div>
+
+        <!-- Card 8 -->
+        <div class="card" data-garment="Trousers" data-style="Avant-garde" data-season="AW25" data-color="Violet" data-occasion="Evening" data-market="Milan"
+             data-description="Wide-leg trousers in deep violet with an ultra-high rise and built-in sculptural hip panel. Fluid crepe fabric with heavy drape. Milan Fashion Week street style, AW25. Trend note: elevated clubwear.">
+          <div class="card-img-wrap" style="height:390px">
+            <img src="https://images.unsplash.com/photo-1509631179647-0177331693ae?w=600&q=80" alt="Wide Leg Trousers" loading="lazy" />
+            <div class="card-overlay">
+              <div class="card-quick-tags">
+                <span class="qtag">Trousers</span>
+                <span class="qtag">Avant-garde</span>
+                <span class="qtag">AW25</span>
+              </div>
+              <div class="card-actions">
+                <button class="card-btn" title="Add to mood board">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+                </button>
+                <button class="card-btn view-detail-btn" title="View details">
+                  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <div class="card-meta">
+              <span class="card-market">Milan · AW25</span>
+              <span class="card-dot" style="background:#6c5ce7"></span>
+            </div>
+            <h3 class="card-title">Sculptural Wide-Leg Trousers</h3>
+            <p class="card-desc">Deep violet crepe with ultra-high rise and hip panel construction.</p>
+          </div>
+        </div>
+
+      </div><!-- /masonry-grid -->
+    </div><!-- /content-area -->
+  </main>
+
+  <!-- ═══════════════════════════════════════
+       UPLOAD MODAL
+  ════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="uploadModal">
+    <div class="modal upload-modal">
+      <div class="modal-header">
+        <h2>Upload Garment Photos</h2>
+        <button class="modal-close" id="closeUploadModal">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </button>
+      </div>
+      <div class="modal-body">
+        <div class="drop-zone" id="dropZone">
+          <div class="drop-zone-inner">
+            <div class="drop-icon">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+            </div>
+            <p class="drop-title">Drag & drop photos here</p>
+            <p class="drop-sub">or <label class="file-browse" for="fileInput">browse files</label></p>
+            <input type="file" id="fileInput" multiple accept="image/*" style="display:none" />
+            <p class="drop-hint">JPG, PNG, HEIC · up to 50MB per image</p>
+          </div>
+        </div>
+        <div class="upload-meta">
+          <div class="meta-row">
+            <label>Season</label>
+            <select class="meta-select">
+              <option>SS26</option>
+              <option>AW25</option>
+              <option>SS25</option>
+              <option>AW24</option>
+            </select>
+          </div>
+          <div class="meta-row">
+            <label>Location captured</label>
+            <input type="text" class="meta-input" placeholder="e.g. Paris, Marais district" />
+          </div>
+          <div class="meta-row">
+            <label>Custom note</label>
+            <input type="text" class="meta-input" placeholder="Optional annotation" />
+          </div>
+        </div>
+        <div class="upload-queue" id="uploadQueue"></div>
+      </div>
+      <div class="modal-footer">
+        <div class="ai-note">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+          AI will auto-classify all uploaded images
+        </div>
+        <button class="btn-primary" id="startUploadBtn">Analyze & Upload</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       DETAIL MODAL
+  ════════════════════════════════════════ -->
+  <div class="modal-backdrop" id="detailModal">
+    <div class="modal detail-modal">
+      <button class="modal-close detail-close" id="closeDetailModal">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+      <div class="detail-layout">
+        <!-- Image panel -->
+        <div class="detail-img-panel">
+          <img id="detailImage" src="" alt="" />
+          <div class="detail-img-actions">
+            <button class="btn-outline-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Download
+            </button>
+            <button class="btn-outline-sm">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+              Add to Board
+            </button>
+          </div>
+        </div>
+
+        <!-- Info panel -->
+        <div class="detail-info-panel">
+          <div class="detail-header">
+            <span class="detail-season-badge" id="detailSeason">AW25</span>
+            <span class="detail-location" id="detailLocation">Paris</span>
+          </div>
+          <h2 class="detail-title" id="detailTitle">Double-Breasted Wool Coat</h2>
+
+          <div class="detail-section">
+            <div class="detail-section-label">AI Description</div>
+            <p class="detail-desc" id="detailDesc">Rich descriptive text from AI analysis appears here.</p>
+          </div>
+
+          <div class="detail-section">
+            <div class="detail-section-label">Structured Attributes</div>
+            <div class="attr-grid" id="attrGrid">
+              <div class="attr-item"><span class="attr-key">Garment</span><span class="attr-val">Outerwear</span></div>
+              <div class="attr-item"><span class="attr-key">Style</span><span class="attr-val">Minimalist</span></div>
+              <div class="attr-item"><span class="attr-key">Material</span><span class="attr-val">Wool</span></div>
+              <div class="attr-item"><span class="attr-key">Color</span><span class="attr-val">Camel</span></div>
+              <div class="attr-item"><span class="attr-key">Pattern</span><span class="attr-val">Solid</span></div>
+              <div class="attr-item"><span class="attr-key">Occasion</span><span class="attr-val">Daywear</span></div>
+              <div class="attr-item"><span class="attr-key">Consumer</span><span class="attr-val">Contemporary</span></div>
+              <div class="attr-item"><span class="attr-key">Trend</span><span class="attr-val">New Classics</span></div>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="detail-section-label">Custom Annotation</div>
+            <div class="annotation-area">
+              <textarea class="annotation-input" placeholder="Add your notes, interpretations or design direction…" rows="3"></textarea>
+              <button class="btn-save-annotation">Save note</button>
+            </div>
+          </div>
+
+          <div class="detail-section">
+            <div class="detail-section-label">AI Actions</div>
+            <div class="ai-actions">
+              <button class="ai-action-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M20.188 10.934l-1.268-4.702L13.066 3.97 12 3l-1.066.97-5.854 2.262L3.812 10.934 3 12l.812 1.066 1.268 4.702 5.854 2.262L12 21l1.066-.97 5.854-2.262 1.268-4.702L21 12z"/></svg>
+                Generate Design Concept
+              </button>
+              <button class="ai-action-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"/></svg>
+                Ask AI about this piece
+              </button>
+              <button class="ai-action-btn">
+                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><line x1="8.59" y1="13.51" x2="15.42" y2="17.49"/><line x1="15.41" y1="6.51" x2="8.59" y2="10.49"/></svg>
+                Find Similar in Library
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══════════════════════════════════════
+       AI PROCESSING TOAST
+  ════════════════════════════════════════ -->
+  <div class="toast" id="toast">
+    <div class="toast-inner">
+      <div class="spinner"></div>
+      <span>AI is classifying your images…</span>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
