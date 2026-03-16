@@ -56,7 +56,7 @@ cp .env.example .env
 Edit `.env` and set your Anthropic API key:
 
 ```
-ANTHROPIC_API_KEY=sk-ant-api03-...
+ANTHROPIC_API_KEY=<>
 UPLOAD_DIR=uploads
 DATABASE_URL=sqlite+aiosqlite:///./styleintel.db
 ```
