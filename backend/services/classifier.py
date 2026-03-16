@@ -6,9 +6,9 @@ import base64
 import json
 import re
 import os
-from pathlib import Path
 from anthropic import AsyncAnthropic
 from dotenv import load_dotenv
+from services.azure_storage import download_blob
 
 load_dotenv()
 
@@ -36,16 +36,16 @@ Analyze this garment photo and return a JSON object with two keys:
 Return ONLY valid JSON, no markdown, no extra text."""
 
 
-async def classify_garment(image_path: str) -> dict:
+async def classify_garment(blob_name: str) -> dict:
     """
-    Read image from disk, send to Claude for classification.
+    Download image from Azure Blob Storage, send to Claude for classification.
     Returns { description: str, attributes: dict }
     """
-    image_data = Path(image_path).read_bytes()
+    image_data = download_blob(blob_name)
     b64_image = base64.standard_b64encode(image_data).decode("utf-8")
 
-    # Detect media type
-    suffix = Path(image_path).suffix.lower()
+    # Detect media type from blob name extension
+    suffix = "." + blob_name.rsplit(".", 1)[-1].lower()
     media_type_map = {
         ".jpg": "image/jpeg", ".jpeg": "image/jpeg",
         ".png": "image/png", ".gif": "image/gif",

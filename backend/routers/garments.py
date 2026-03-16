@@ -7,26 +7,20 @@ Garment routes:
   DELETE /garments/{id}      — delete garment
   GET  /garments/filters     — return distinct values for each filter dimension
 """
-import os
 import uuid
-import asyncio
-from pathlib import Path
 from typing import Optional
 
-import aiofiles
 from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Form, BackgroundTasks, Query
-from fastapi.responses import FileResponse
+from fastapi.responses import Response
 from pydantic import BaseModel
 from sqlalchemy import select, or_, func
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from models import Garment, get_db
 from services import classify_garment
+from services.azure_storage import upload_blob, download_blob, delete_blob
 
 router = APIRouter(prefix="/garments", tags=["garments"])
-
-UPLOAD_DIR = Path(os.getenv("UPLOAD_DIR", "uploads"))
-UPLOAD_DIR.mkdir(exist_ok=True)
 
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".heic"}
 MAX_FILE_SIZE = 50 * 1024 * 1024  # 50 MB
@@ -82,9 +76,9 @@ def garment_to_out(g: Garment, base_url: str = "") -> GarmentOut:
     return GarmentOut(**d)
 
 
-async def run_classification(garment_id: int, image_path: str):
+async def run_classification(garment_id: int, blob_name: str):
     """Background task: classify image with Claude and update DB."""
-    print(f"[classifier] Starting classification for garment {garment_id}, path={image_path}")
+    print(f"[classifier] Starting classification for garment {garment_id}, blob={blob_name}")
     from models.database import AsyncSessionLocal
     async with AsyncSessionLocal() as session:
         garment = await session.get(Garment, garment_id)
@@ -93,7 +87,7 @@ async def run_classification(garment_id: int, image_path: str):
             return
         try:
             print(f"[classifier] Calling Claude API for garment {garment_id}...")
-            result = await classify_garment(image_path)
+            result = await classify_garment(blob_name)
             print(f"[classifier] Claude response received for garment {garment_id}")
             attrs = result.get("attributes", {})
             garment.ai_description = result.get("description", "")
@@ -132,17 +126,15 @@ async def upload_garments(
 
     created = []
     for file in files:
-        ext = Path(file.filename).suffix.lower()
+        ext = "." + file.filename.rsplit(".", 1)[-1].lower() if "." in file.filename else ""
         if ext not in ALLOWED_EXTENSIONS:
             raise HTTPException(400, f"Unsupported file type: {ext}")
 
         safe_name = f"{uuid.uuid4().hex}{ext}"
-        save_path = UPLOAD_DIR / safe_name
 
-        # Stream to disk
-        async with aiofiles.open(save_path, "wb") as f:
-            while chunk := await file.read(1024 * 256):
-                await f.write(chunk)
+        # Read and upload to Azure Blob Storage
+        file_bytes = await file.read()
+        upload_blob(safe_name, file_bytes)
 
         garment = Garment(
             filename=safe_name,
@@ -154,7 +146,7 @@ async def upload_garments(
         )
         db.add(garment)
         await db.flush()  # get id before commit
-        background_tasks.add_task(run_classification, garment.id, str(save_path))
+        background_tasks.add_task(run_classification, garment.id, safe_name)
         created.append(garment)
 
     await db.commit()
@@ -256,10 +248,14 @@ async def get_garment_image(garment_id: int, db: AsyncSession = Depends(get_db))
     garment = await db.get(Garment, garment_id)
     if not garment:
         raise HTTPException(404, "Garment not found")
-    path = UPLOAD_DIR / garment.filename
-    if not path.exists():
-        raise HTTPException(404, "Image file not found")
-    return FileResponse(str(path))
+    try:
+        image_bytes = download_blob(garment.filename)
+    except Exception:
+        raise HTTPException(404, "Image not found in storage")
+    ext = garment.filename.rsplit(".", 1)[-1].lower()
+    media_type = {"jpg": "image/jpeg", "jpeg": "image/jpeg", "png": "image/png",
+                  "gif": "image/gif", "webp": "image/webp"}.get(ext, "image/jpeg")
+    return Response(content=image_bytes, media_type=media_type)
 
 
 @router.patch("/{garment_id}/annotation", response_model=GarmentOut)
@@ -282,8 +278,6 @@ async def delete_garment(garment_id: int, db: AsyncSession = Depends(get_db)):
     garment = await db.get(Garment, garment_id)
     if not garment:
         raise HTTPException(404, "Garment not found")
-    path = UPLOAD_DIR / garment.filename
-    if path.exists():
-        path.unlink()
+    delete_blob(garment.filename)
     await db.delete(garment)
     await db.commit()

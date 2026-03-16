@@ -7,3 +7,4 @@ anthropic==0.40.0
 pillow==11.0.0
 python-dotenv==1.0.1
 aiofiles==22.1.0
+azure-storage-blob==12.23.0
